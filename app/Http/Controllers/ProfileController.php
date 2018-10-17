@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 Use DB;
+use App\Profile;
 use App\User;
 class ProfileController extends Controller
 {
@@ -25,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.create');
     }
 
     /**
@@ -36,7 +37,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $this->validate($request,[
+            'county' => 'required'
+        ]);
+        
+        // create Post
+        $post = new Profile;
+        $post->county = $request->input('county');
+        $post->save();
+
+        return redirect('/profile')->with('success','Post Created');
     }
 
     /**

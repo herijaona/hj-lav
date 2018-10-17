@@ -4,6 +4,6 @@
     @if(isset($user->profiles->user_id))
         {{ $user->profiles->county }}
     @else
-        {{ Redirect('/home') }}
+        {!! Redirect('/home') !!}
     @endif
 @endsection
